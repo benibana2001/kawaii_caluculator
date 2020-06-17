@@ -7,9 +7,7 @@
 
       <div :class="classComment">
         <div :class="classCommentInner">
-          <div :class="classTextarea">
-            {{ currentMessage }}
-          </div>
+          <div :class="classTextarea">{{ currentMessage }}</div>
 
           <div :class="classTriangle"></div>
         </div>
@@ -30,19 +28,13 @@
 
       <ul :class="right">
         <li>
-          <button v-on:click="clearClick" :class="clear">
-            {{ buttons.clear }}
-          </button>
+          <button v-on:click="clearClick" :class="clear">{{ buttons.clear }}</button>
         </li>
         <li>
-          <button v-on:click="delClick" :class="del">
-            {{ buttons.del }}
-          </button>
+          <button v-on:click="delClick" :class="del">{{ buttons.del }}</button>
         </li>
         <li v-for="sign in buttons.signs" :key="sign.index">
-          <button v-on:click="signClick(sign)" :class="mark">
-            {{ sign }}
-          </button>
+          <button v-on:click="signClick(sign)" :class="mark">{{ sign }}</button>
         </li>
       </ul>
     </div>
@@ -58,7 +50,7 @@ export default {
         "電卓だよ！",
         "計算しよ〜〜、そ〜しよ〜〜",
         "となりのきゃくはよくかきくうきゃくだ!!",
-        "Vue.jsを使っているよ",
+        "Vue.jsを使っているよ"
       ],
       current: 0,
       result: 0,
@@ -67,17 +59,17 @@ export default {
         nums: [9, 8, 7, 6, 5, 4, 3, 2, 1, "", 0, ""],
         signs: ["+", "-", "*", "/", "="],
         del: "del",
-        clear: "clear",
+        clear: "clear"
       },
       inputs: {
         values: [],
-        commands: [],
+        commands: []
       },
       calc: {
         sum: (a, b) => a + b,
         sub: (a, b) => a - b,
         mul: (a, b) => a * b,
-        div: (a, b) => a / b,
+        div: (a, b) => a / b
       },
       display: "display",
       container: "container",
@@ -91,7 +83,7 @@ export default {
       classComment: "comment",
       classTextarea: "textarea",
       classTriangle: "triangle",
-      classCommentInner: "comment-inner",
+      classCommentInner: "comment-inner"
     };
   },
 
@@ -209,13 +201,13 @@ export default {
       } else {
         this.current = 0;
       }
-    },
+    }
   },
 
   mounted: function() {
     window.addEventListener("keydown", this.keydownHandler);
     window.setInterval(this.changeMessage, 4000);
-  },
+  }
 };
 </script>
 
