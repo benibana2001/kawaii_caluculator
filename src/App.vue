@@ -6,7 +6,7 @@
       <div :class="classResult">{{ parseInt(result) }}</div>
 
       <div :class="classComment">
-        <textarea>メッセージ</textarea>
+        <div :class="classTextarea">{{ currentMessage }}</div>
 
         <div>
           <!-- <img src="./assets/character.jpg" /> -->
@@ -47,6 +47,13 @@
 export default {
   data() {
     return {
+      currentMessage: 0,
+      messages: [
+        "電卓だよ！",
+        "計算しよ〜〜そ〜しよ〜〜",
+        "隣の客はよく柿食う客だ",
+        "Vue.jsを使っているよ",
+      ],
       current: 0,
       result: 0,
       log: 0,
@@ -76,6 +83,7 @@ export default {
       classCurrent: "current",
       classResult: "result",
       classComment: "comment",
+      classTextarea: "textarea",
     };
   },
 
@@ -90,6 +98,19 @@ export default {
           this.current = parseInt(current);
           break;
         }
+      }
+    },
+
+    changeMessage: function() {
+      let messages = this.messages.slice();
+      const index = messages.indexOf(this.currentMessage);
+      messages.splice(index, 1);
+
+      const random = getRandomInt(messages.length);
+      this.currentMessage = messages[random];
+
+      function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
       }
     },
 
@@ -181,6 +202,7 @@ export default {
 
   mounted: function() {
     window.addEventListener("keydown", this.keydownHandler);
+    window.setInterval(this.changeMessage, 4000);
   },
 };
 </script>
@@ -308,16 +330,17 @@ button.del {
   display: flex;
 }
 
-.comment textarea {
-  width: 70%;
-  margin: 1em;
-  padding: 0.6em;
+.comment .textarea {
+  /* width: 70%; */
+  /* margin: 1em; */
+  /* padding: 0.6em; */
   /*  */
   resize: none;
-  border: 0px;
+  border: 1px solid white;
   border-radius: 0.5em;
+  font-size: 0.4em;
   font-weight: bold;
-  color: yellowgreen;
+  color: white;
   /*  */
 }
 
@@ -325,7 +348,4 @@ textarea:focus {
   outline: none;
 }
 
-.comment > div {
-  width: 30%;
-}
 </style>
