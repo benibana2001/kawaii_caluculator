@@ -6,7 +6,13 @@
       <div :class="classResult">{{ parseInt(result) }}</div>
 
       <div :class="classComment">
-        <div :class="classTextarea">{{ currentMessage }}</div>
+        <div :class="classCommentInner">
+          <div :class="classTextarea">
+            {{ currentMessage }}
+          </div>
+
+          <div :class="classTriangle"></div>
+        </div>
 
         <div>
           <!-- <img src="./assets/character.jpg" /> -->
@@ -47,11 +53,11 @@
 export default {
   data() {
     return {
-      currentMessage: 0,
+      currentMessage: "ようこそ！",
       messages: [
         "電卓だよ！",
-        "計算しよ〜〜そ〜しよ〜〜",
-        "隣の客はよく柿食う客だ",
+        "計算しよ〜〜、そ〜しよ〜〜",
+        "となりのきゃくはよくかきくうきゃくだ!!",
         "Vue.jsを使っているよ",
       ],
       current: 0,
@@ -84,6 +90,8 @@ export default {
       classResult: "result",
       classComment: "comment",
       classTextarea: "textarea",
+      classTriangle: "triangle",
+      classCommentInner: "comment-inner",
     };
   },
 
@@ -103,8 +111,12 @@ export default {
 
     changeMessage: function() {
       let messages = this.messages.slice();
-      const index = messages.indexOf(this.currentMessage);
-      messages.splice(index, 1);
+
+      // 同じコメントの連続表示を防止する
+      if (this.messages.includes(this.currentMessage)) {
+        const index = messages.indexOf(this.currentMessage);
+        messages.splice(index, 1);
+      }
 
       const random = getRandomInt(messages.length);
       this.currentMessage = messages[random];
@@ -236,7 +248,7 @@ html {
 
 body {
   background-color: black;
-  font-size: 1.6em;
+  font-size: 1.4em;
 }
 
 #app {
@@ -247,7 +259,7 @@ body {
 }
 
 .display {
-  background: rgba(200, 200, 200, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   text-align: right;
   height: 30vh;
 }
@@ -304,6 +316,7 @@ button {
   font-size: 1.4em;
   background-color: #444;
   color: white;
+  border: none;
   font-size: 1.6em;
   font-weight: lighter;
 }
@@ -328,24 +341,40 @@ button.del {
 
 .comment {
   display: flex;
+  justify-content: flex-end;
 }
 
 .comment .textarea {
   /* width: 70%; */
   /* margin: 1em; */
-  /* padding: 0.6em; */
+  padding: 0.8em;
+  padding-right: 1em;
+  float: left;
   /*  */
   resize: none;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   border-radius: 0.5em;
-  font-size: 0.4em;
+  /* font-size: 0.8em; */
+  text-align: left;
   font-weight: bold;
   color: white;
   /*  */
+  background-color: #b2ce54;
 }
 
 textarea:focus {
   outline: none;
 }
 
+.comment-inner {
+}
+
+.triangle {
+  float: left;
+  width: 0.4em;
+  margin-top: 1em;
+  border-top: 0.3em solid transparent;
+  border-bottom: 0.3em solid transparent;
+  border-left: 0.6em solid #b2ce54;
+}
 </style>
