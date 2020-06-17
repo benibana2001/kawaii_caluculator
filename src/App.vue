@@ -12,9 +12,8 @@
           <div :class="classTriangle"></div>
         </div>
 
-        <div>
-          <!-- <img src="./assets/character.jpg" /> -->
-          character
+        <div :class="classCharacter">
+          <img src="./assets/character.png" />
         </div>
       </div>
     </div>
@@ -49,8 +48,14 @@ export default {
       messages: [
         "電卓だよ！",
         "計算しよ〜〜、そ〜しよ〜〜",
-        "となりのきゃくはよくかきくうきゃくだ!!",
         "Vue.jsを使っているよ"
+      ],
+      clickMessage: [
+        "いてっ!",
+        "たたくなよ〜",
+        "やめろって",
+        "やめてってば〜",
+        "やめてよ..."
       ],
       current: 0,
       result: 0,
@@ -83,7 +88,8 @@ export default {
       classComment: "comment",
       classTextarea: "textarea",
       classTriangle: "triangle",
-      classCommentInner: "comment-inner"
+      classCommentInner: "comment-inner",
+      classCharacter: "character"
     };
   },
 
@@ -233,9 +239,24 @@ li {
 a {
   text-decoration: none;
 }
+img {
+  max-width: 100%;
+}
 
 html {
   font-size: 62.5%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 110%;
+  }
 }
 
 body {
@@ -331,34 +352,36 @@ button.del {
   background-color: #666;
 }
 
-.comment {
+div.comment {
   display: flex;
   justify-content: flex-end;
 }
 
+.comment-inner {
+  max-width: 16em;
+}
+
+div.character {
+  width: 4em;
+}
+
 .comment .textarea {
-  /* width: 70%; */
-  /* margin: 1em; */
   padding: 0.8em;
   padding-right: 1em;
   float: left;
   /*  */
   resize: none;
-  /* border: 1px solid white; */
   border-radius: 0.5em;
-  /* font-size: 0.8em; */
   text-align: left;
   font-weight: bold;
   color: white;
   /*  */
   background-color: #b2ce54;
+  /*  */
 }
 
 textarea:focus {
   outline: none;
-}
-
-.comment-inner {
 }
 
 .triangle {
