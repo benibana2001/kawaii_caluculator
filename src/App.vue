@@ -5,22 +5,22 @@
       <p>resutl is: {{ parseInt(result) }}</p>
     </div>
 
-    <div>
-      <ul>
+    <div v-bind:class="[container]">
+      <ul v-bind:class="[left]">
         <li v-for="num in buttons.nums" :key="num.index">
           <button v-on:click="numClick(num)">{{ num }}</button>
         </li>
       </ul>
 
-      <ul>
-        <li v-for="sign in buttons.signs" :key="sign.index">
-          <button v-on:click="signClick(sign)">{{ sign }}</button>
+      <ul v-bind:class="[right]">
+        <li>
+          <button v-on:click="clearClick">{{ buttons.clear }}</button>
         </li>
         <li>
           <button v-on:click="delClick">{{ buttons.del }}</button>
         </li>
-        <li>
-          <button v-on:click="clearClick">{{ buttons.clear }}</button>
+        <li v-for="sign in buttons.signs" :key="sign.index">
+          <button v-on:click="signClick(sign)">{{ sign }}</button>
         </li>
       </ul>
     </div>
@@ -51,6 +51,9 @@ export default {
         div: (a, b) => a / b,
       },
       display: "display",
+      container: "container",
+      left: "left",
+      right: "right",
     };
   },
 
@@ -58,7 +61,7 @@ export default {
 
   methods: {
     init: function() {
-      for (let i = 0; i <= 9; i++) {
+      for (let i = 9; i >= 0; i--) {
         this.buttons.nums.push(i);
       }
     },
@@ -204,6 +207,37 @@ a {
 .display {
   background: rgba(200, 200, 200, 0.8);
   text-align: right;
-  font-size: 4em;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.left {
+  display: flex;
+  width: 75%;
+  flex-flow: row wrap;
+}
+
+.left li {
+  width: calc(100% / 3);
+}
+
+.left li button {
+  width: 100%;
+  height: 100%;
+}
+
+.right {
+  width: 25%;
+}
+
+.right li {
+  width: 100%;
+}
+
+.right li button {
+  width: 100%;
 }
 </style>
