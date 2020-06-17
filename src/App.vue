@@ -1,26 +1,42 @@
 <template>
   <div id="app">
-    <div v-bind:class="[display]">
-      <div>{{ current }}</div>
-      <p>resutl is: {{ parseInt(result) }}</p>
+    <div v-bind:class="display">
+      <div :class="classCurrent">{{ current }}</div>
+
+      <div :class="classResult">{{ parseInt(result) }}</div>
+
+      <div :class="classComment">
+        <textarea>メッセージ</textarea>
+
+        <div>
+          <!-- <img src="./assets/character.jpg" /> -->
+          character
+        </div>
+      </div>
     </div>
 
     <div v-bind:class="[container]">
-      <ul v-bind:class="[left]">
+      <ul :class="left">
         <li v-for="num in buttons.nums" :key="num.index">
-          <button v-on:click="numClick(num)">{{ num }}</button>
+          <button v-on:click="numClick(num)" :class="num">{{ num }}</button>
         </li>
       </ul>
 
-      <ul v-bind:class="[right]">
+      <ul :class="right">
         <li>
-          <button v-on:click="clearClick">{{ buttons.clear }}</button>
+          <button v-on:click="clearClick" :class="clear">
+            {{ buttons.clear }}
+          </button>
         </li>
         <li>
-          <button v-on:click="delClick">{{ buttons.del }}</button>
+          <button v-on:click="delClick" :class="del">
+            {{ buttons.del }}
+          </button>
         </li>
         <li v-for="sign in buttons.signs" :key="sign.index">
-          <button v-on:click="signClick(sign)">{{ sign }}</button>
+          <button v-on:click="signClick(sign)" :class="mark">
+            {{ sign }}
+          </button>
         </li>
       </ul>
     </div>
@@ -35,7 +51,7 @@ export default {
       result: 0,
       log: 0,
       buttons: {
-        nums: [],
+        nums: [9, 8, 7, 6, 5, 4, 3, 2, 1, "", 0, ""],
         signs: ["+", "-", "*", "/", "="],
         del: "del",
         clear: "clear",
@@ -54,18 +70,18 @@ export default {
       container: "container",
       left: "left",
       right: "right",
+      mark: "mark",
+      del: "del",
+      clear: "clear",
+      classCurrent: "current",
+      classResult: "result",
+      classComment: "comment",
     };
   },
 
   name: "App",
 
   methods: {
-    init: function() {
-      for (let i = 9; i >= 0; i--) {
-        this.buttons.nums.push(i);
-      }
-    },
-
     keydownHandler: function(event) {
       console.log(event.code);
       switch (event.code.substring(0, 5)) {
@@ -165,7 +181,6 @@ export default {
 
   mounted: function() {
     window.addEventListener("keydown", this.keydownHandler);
-    this.init();
   },
 };
 </script>
@@ -180,7 +195,9 @@ h4,
 p,
 ul,
 li,
-a {
+a,
+p,
+textarea {
   margin: 0;
   padding: 0;
 }
@@ -191,33 +208,50 @@ a {
   text-decoration: none;
 }
 
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: black;
+  font-size: 1.6em;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  /* margin-top: 60px; */
-}
-
-#current {
-  text-align: right;
 }
 
 .display {
   background: rgba(200, 200, 200, 0.8);
   text-align: right;
+  height: 30vh;
+}
+
+.current {
+  font-size: 4em;
+}
+
+.result {
+  font-size: 2em;
+  color: #555;
 }
 
 .container {
   display: flex;
   width: 100%;
+  height: 70vh;
+}
+
+.contailer li {
 }
 
 .left {
   display: flex;
   width: 75%;
-  flex-flow: row wrap;
+  flex-flow: row-reverse wrap;
 }
 
 .left li {
@@ -230,7 +264,9 @@ a {
 }
 
 .right {
+  display: flex;
   width: 25%;
+  flex-flow: row wrap;
 }
 
 .right li {
@@ -239,5 +275,57 @@ a {
 
 .right li button {
   width: 100%;
+  height: 100%;
+}
+
+button {
+  font-size: 1.4em;
+  background-color: #444;
+  color: white;
+  font-size: 1.6em;
+  font-weight: lighter;
+}
+button:focus {
+  outline: none;
+}
+
+button.num {
+}
+
+button.mark {
+  background-color: #555;
+}
+
+button.clear {
+  background-color: #999;
+}
+
+button.del {
+  background-color: #666;
+}
+
+.comment {
+  display: flex;
+}
+
+.comment textarea {
+  width: 70%;
+  margin: 1em;
+  padding: 0.6em;
+  /*  */
+  resize: none;
+  border: 0px;
+  border-radius: 0.5em;
+  font-weight: bold;
+  color: yellowgreen;
+  /*  */
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.comment > div {
+  width: 30%;
 }
 </style>
