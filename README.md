@@ -1,29 +1,7 @@
 # vue_calculator
 
-## Project setup
-```
-npm install
-```
+Just a calculator created with Vue.js.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+[https://kawaii-calculator.netlify.app/](https://kawaii-calculator.netlify.app/)
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![thumbnail](https://user-images.githubusercontent.com/37505537/84968295-1ae67680-b151-11ea-80d1-da2b7255194b.png)
