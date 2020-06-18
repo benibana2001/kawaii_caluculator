@@ -263,7 +263,14 @@ img {
 }
 
 html {
+  touch-action: manipulation;
   font-size: 62.5%;
+}
+
+@media (max-width: 400px) {
+  html {
+    font-size: 58%;
+  }
 }
 
 @media (min-width: 768px) {
