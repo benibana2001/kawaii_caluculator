@@ -232,6 +232,10 @@ export default {
   mounted: function() {
     window.addEventListener("keydown", this.keydownHandler);
     window.setInterval(this.changeMessage, 4000);
+    window.addEventListener("resize", () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    });
   }
 };
 </script>
@@ -295,6 +299,7 @@ body {
   background: rgba(255, 255, 255, 0.9);
   text-align: right;
   height: 30vh;
+  height: calc(var(--vh, 1vh) * 30);
 }
 
 .current {
@@ -310,6 +315,7 @@ body {
   display: flex;
   width: 100%;
   height: 70vh;
+  height: calc(var(--vh, 1vh) * 70);
 }
 
 .contailer li {
