@@ -272,7 +272,7 @@ html {
 
 @media (max-width: 400px) {
   html {
-    font-size: 58%;
+    font-size: 50%;
   }
 }
 
