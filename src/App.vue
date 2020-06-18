@@ -97,13 +97,32 @@ export default {
 
   methods: {
     keydownHandler: function(event) {
-      console.log(event.code);
+      console.log(event);
       switch (event.code.substring(0, 5)) {
         case "Digit": {
           const current = String(this.current) + event.key;
           this.current = parseInt(current);
           break;
         }
+      }
+
+      switch (event.key) {
+        case "=":
+        case "+":
+        case "-":
+        case "*":
+        case "/":
+          this.signClick(event.key);
+          break;
+        case "Enter":
+          this.signClick("=");
+          break;
+        case "Backspace":
+          this.delClick();
+          break;
+        case "Delete":
+          this.clearClick();
+          break;
       }
     },
 
