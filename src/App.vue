@@ -249,13 +249,7 @@ html {
 
 @media (min-width: 768px) {
   html {
-    font-size: 100%;
-  }
-}
-
-@media (min-width: 1024px) {
-  html {
-    font-size: 110%;
+    font-size: 90%;
   }
 }
 
