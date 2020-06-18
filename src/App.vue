@@ -232,10 +232,9 @@ export default {
   mounted: function() {
     window.addEventListener("keydown", this.keydownHandler);
     window.setInterval(this.changeMessage, 4000);
-    window.addEventListener("resize", () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    });
+
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
   }
 };
 </script>
