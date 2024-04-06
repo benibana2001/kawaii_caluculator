@@ -97,7 +97,6 @@ export default {
 
   methods: {
     keydownHandler: function(event) {
-      console.log(event);
       switch (event.code.substring(0, 5)) {
         case "Digit": {
           const current = String(this.current) + event.key;
@@ -156,7 +155,6 @@ export default {
     },
 
     numClick: function(num) {
-      console.log(num);
       const current = String(this.current) + String(num);
       this.current = parseInt(current);
     },
@@ -197,7 +195,6 @@ export default {
 
     signClick: function(sign) {
       let func = () => {};
-      console.log(sign);
 
       switch (sign) {
         case "+":
